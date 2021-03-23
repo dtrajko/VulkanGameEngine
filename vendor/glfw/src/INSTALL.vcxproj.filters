@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\Workspace\cpp\MoravaEngine\vendor\cross-platform\glfw\CMakeFiles\dab81c1fd9c1f82f23ab8163b0ec4ae4\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{D42F0E43-0CB9-3C0E-90D9-EC51AB0E80A1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

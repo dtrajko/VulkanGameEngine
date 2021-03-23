@@ -348,3 +348,9 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+/vendor/VulkanSDK/1.2.170.0/Lib/SPIRV-Tools-opt.lib
+/vendor/VulkanSDK/1.2.170.0/Lib/shaderc_combined.lib
+/vendor/VulkanSDK/1.2.170.0/Lib/MachineIndependent.lib
+/vendor/VulkanSDK/1.2.170.0/Lib/SPIRV-Tools.lib
+/vendor/VulkanSDK/1.2.170.0/Lib/SPIRV-Tools-reduce.lib
