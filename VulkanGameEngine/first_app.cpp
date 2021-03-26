@@ -64,9 +64,14 @@ namespace lve {
 
 		vkDeviceWaitIdle(lveDevice.device());
 
-		// lveSwapChain.reset();
-		lveSwapChain = nullptr;
-		lveSwapChain = std::make_unique<LveSwapChain>(lveDevice, extent);
+		if (lveSwapChain == nullptr) {
+			lveSwapChain = std::make_unique<LveSwapChain>(lveDevice, extent);
+		}
+		else {
+			lveSwapChain = std::make_unique<LveSwapChain>(lveDevice, extent, std::move(lveSwapChain));
+			freeCommandBuffers();
+			createCommandBuffers();
+		}
 
 		// if render pass compatible do nothing else
 		createPipeline();
@@ -74,6 +79,9 @@ namespace lve {
 
 	void FirstApp::createPipeline()
 	{
+		assert(lveSwapChain != nullptr && "Cannot create pipeline before swap chain!");
+		assert(pipelineLayout != nullptr && "Cannot create pipeline before pipeline layout!");
+
 		PipelineConfigInfo pipelineConfig{};
 		LvePipeline::defaultPipelineConfigInfo(pipelineConfig);
 		pipelineConfig.renderPass = lveSwapChain->getRenderPass();
@@ -98,6 +106,17 @@ namespace lve {
 		if (vkAllocateCommandBuffers(lveDevice.device(), &allocInfo, commandBuffers.data()) != VK_SUCCESS) {
 			throw std::runtime_error("Failed to allocate command buffers!");
 		}
+	}
+
+	void FirstApp::freeCommandBuffers()
+	{
+		vkFreeCommandBuffers(
+			lveDevice.device(),
+			lveDevice.getCommandPool(),
+			static_cast<uint32_t>(commandBuffers.size()),
+			commandBuffers.data());
+
+		commandBuffers.clear();
 	}
 
 	void FirstApp::drawFrame()
