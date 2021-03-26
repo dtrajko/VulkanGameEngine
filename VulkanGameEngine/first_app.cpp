@@ -38,7 +38,6 @@ namespace lve {
 		};
 
 		lveModel = std::make_unique<LveModel>(lveDevice, vertices);
-
 	}
 
 	void FirstApp::createPipelineLayout()
@@ -65,8 +64,11 @@ namespace lve {
 
 		vkDeviceWaitIdle(lveDevice.device());
 
-		lveSwapChain.reset();
+		// lveSwapChain.reset();
+		lveSwapChain = nullptr;
 		lveSwapChain = std::make_unique<LveSwapChain>(lveDevice, extent);
+
+		// if render pass compatible do nothing else
 		createPipeline();
 	}
 
