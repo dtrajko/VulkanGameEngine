@@ -1,4 +1,5 @@
 #include "first_app.hpp"
+#include "gravity_vec_field_app.hpp"
 
 // std
 #include <cstdlib>
@@ -8,7 +9,7 @@
 
 int main()
 {
-	lve::FirstApp app{};
+	lve::GravityVecFieldApp app{};
 
 	try {
 		app.run();

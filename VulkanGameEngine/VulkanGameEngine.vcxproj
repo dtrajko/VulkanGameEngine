@@ -85,6 +85,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="first_app.cpp" />
+    <ClCompile Include="gravity_vec_field_app.cpp" />
     <ClCompile Include="lve_game_object.cpp" />
     <ClCompile Include="lve_model.cpp" />
     <ClCompile Include="lve_pipeline.cpp" />
@@ -98,6 +99,7 @@
   <ItemGroup>
     <ClInclude Include="first_app.hpp" />
     <ClInclude Include="gravity_physics_system.hpp" />
+    <ClInclude Include="gravity_vec_field_app.hpp" />
     <ClInclude Include="lve_game_object.hpp" />
     <ClInclude Include="lve_model.hpp" />
     <ClInclude Include="lve_pipeline.hpp" />
@@ -107,6 +109,7 @@
     <ClInclude Include="lve_device.hpp" />
     <ClInclude Include="rainbow_system.hpp" />
     <ClInclude Include="simple_render_system.hpp" />
+    <ClInclude Include="vec2_field_system.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="scripts\compile.bat">
