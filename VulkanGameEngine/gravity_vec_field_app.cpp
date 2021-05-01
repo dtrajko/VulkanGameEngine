@@ -41,6 +41,7 @@ namespace lve {
 		red.transform2d.translation = { .5f, .5f };
 		red.color = { 1.f, 0.f, 0.f };
 		red.rigidBody2d.velocity = { -.5f, .0f };
+		red.rigidBody2d.mass = 1.0f;
 		red.model = circleModel;
 		physicsObjects.push_back(std::move(red));
 		auto blue = LveGameObject::createGameObject();
@@ -48,6 +49,7 @@ namespace lve {
 		blue.transform2d.translation = { -.45f, -.25f };
 		blue.color = { 0.f, 0.f, 1.f };
 		blue.rigidBody2d.velocity = { .5f, .0f };
+		blue.rigidBody2d.mass = 1.0f;
 		blue.model = circleModel;
 		physicsObjects.push_back(std::move(blue));
 
@@ -61,7 +63,7 @@ namespace lve {
 				vf.transform2d.translation = {
 					-1.0f + (i + 0.5f) * 2.0f / gridCount,
 					-1.0f + (j + 0.5f) * 2.0f / gridCount };
-				vf.color = glm::vec3(1.0f);
+				vf.color = glm::vec3(0.02f);
 				vf.model = squareModel;
 				vectorField.push_back(std::move(vf));
 			}
