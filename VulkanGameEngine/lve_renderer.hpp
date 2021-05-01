@@ -18,7 +18,7 @@ namespace lve {
 		LveRenderer(LveWindow& window, LveDevice& device);
 		~LveRenderer();
 
-		LveRenderer(const LveWindow&) = delete;
+		LveRenderer(const LveRenderer&) = delete;
 		LveRenderer& operator=(const LveRenderer&) = delete;
 
 		VkRenderPass getSwapChainRenderPass() const { return lveSwapChain->getRenderPass(); }
@@ -26,7 +26,12 @@ namespace lve {
 		bool isFrameInProgress() const { return isFrameStarted; };
 		VkCommandBuffer getCurrentCommandBuffer() const {
 			assert(isFrameStarted && "Cannot get command buffer when frame not in progress");
-			return commandBuffers[currentImageIndex];
+			return commandBuffers[currentFrameIndex];
+		}
+
+		int getFrameIndex() const {
+			assert(isFrameStarted && "Cannot get frame index when frame not in progress");
+			return currentFrameIndex;
 		}
 
 		VkCommandBuffer beginFrame();
@@ -45,6 +50,7 @@ namespace lve {
 		std::vector<VkCommandBuffer> commandBuffers;
 
 		uint32_t currentImageIndex;
+		int currentFrameIndex;
 		bool isFrameStarted;
 
 	};
