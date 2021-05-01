@@ -88,6 +88,7 @@
     <ClCompile Include="lve_game_object.cpp" />
     <ClCompile Include="lve_model.cpp" />
     <ClCompile Include="lve_pipeline.cpp" />
+    <ClCompile Include="lve_renderer.cpp" />
     <ClCompile Include="lve_swap_chain.cpp" />
     <ClCompile Include="lve_window.cpp" />
     <ClCompile Include="main.cpp" />
@@ -98,6 +99,7 @@
     <ClInclude Include="lve_game_object.hpp" />
     <ClInclude Include="lve_model.hpp" />
     <ClInclude Include="lve_pipeline.hpp" />
+    <ClInclude Include="lve_renderer.hpp" />
     <ClInclude Include="lve_swap_chain.hpp" />
     <ClInclude Include="lve_window.hpp" />
     <ClInclude Include="lve_device.hpp" />
