@@ -24,9 +24,9 @@ namespace lve {
                 // This scales the length of the field line based on the log of the length
                 // values were chosen just through trial and error based on what i liked the look
                 // of and then the field line is rotated to point in the direction of the field
-                vf.transform2d.scale.x =
+                vf.transform.scale.x =
                     0.005f + 0.045f * glm::clamp(glm::log(glm::length(direction) + 1) / 3.f, 0.f, 1.f);
-                vf.transform2d.rotation = atan2(direction.y, direction.x);
+                vf.transform.rotation = glm::vec3(0.0f, atan2(direction.y, direction.x), 0.0f);
             }
         }
     };

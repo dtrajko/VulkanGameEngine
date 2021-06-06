@@ -31,22 +31,22 @@ namespace lve {
 		// create some models
 		std::shared_ptr<LveModel> squareModel = createSquareModel(
 			lveDevice,
-			{ .5f, .0f });  // offset model by .5 so rotation occurs at edge rather than center of square
+			{ .5f, .0f, 0.0f });  // offset model by .5 so rotation occurs at edge rather than center of square
 		std::shared_ptr<LveModel> circleModel = createCircleModel(lveDevice, 64);
 
 		// create physics objects
 		std::vector<LveGameObject> physicsObjects{};
 		auto red = LveGameObject::createGameObject();
-		red.transform2d.scale = glm::vec2{ .05f };
-		red.transform2d.translation = { .5f, .5f };
+		red.transform.scale = glm::vec3{ .05f };
+		red.transform.translation = { .5f, .5f, 0.0f };
 		red.color = { 1.f, 0.f, 0.f };
 		red.rigidBody2d.velocity = { -.5f, .0f };
 		red.rigidBody2d.mass = 1.0f;
 		red.model = circleModel;
 		physicsObjects.push_back(std::move(red));
 		auto blue = LveGameObject::createGameObject();
-		blue.transform2d.scale = glm::vec2{ .05f };
-		blue.transform2d.translation = { -.45f, -.25f };
+		blue.transform.scale = glm::vec3{ .05f };
+		blue.transform.translation = { -.45f, -.25f, 0.0f };
 		blue.color = { 0.f, 0.f, 1.f };
 		blue.rigidBody2d.velocity = { .5f, .0f };
 		blue.rigidBody2d.mass = 1.0f;
@@ -59,10 +59,11 @@ namespace lve {
 		for (int i = 0; i < gridCount; i++) {
 			for (int j = 0; j < gridCount; j++) {
 				auto vf = LveGameObject::createGameObject();
-				vf.transform2d.scale = glm::vec2(0.005f);
-				vf.transform2d.translation = {
+				vf.transform.scale = glm::vec3(0.005f);
+				vf.transform.translation = {
 					-1.0f + (i + 0.5f) * 2.0f / gridCount,
-					-1.0f + (j + 0.5f) * 2.0f / gridCount };
+					-1.0f + (j + 0.5f) * 2.0f / gridCount,
+					0.0f };
 				vf.color = glm::vec3(0.02f);
 				vf.model = squareModel;
 				vectorField.push_back(std::move(vf));
@@ -97,9 +98,9 @@ namespace lve {
 	void GravityVecFieldApp::loadGameObjects()
 	{
 		std::vector<LveModel::Vertex> vertices{
-			{{ 0.0f, -0.5f }, { 1.0f, 0.0f, 0.0f }},
-			{{ 0.5f,  0.5f }, { 0.0f, 1.0f, 0.0f }},
-			{{-0.5f,  0.5f }, { 0.0f, 0.0f, 1.0f }},
+			{{ 0.0f, -0.5f, 0.0f }, { 1.0f, 0.0f, 0.0f }},
+			{{ 0.5f,  0.5f, 0.0f }, { 0.0f, 1.0f, 0.0f }},
+			{{-0.5f,  0.5f, 0.0f }, { 0.0f, 0.0f, 1.0f }},
 		};
 
 		auto lveModel = std::make_shared<LveModel>(lveDevice, vertices);
@@ -107,9 +108,9 @@ namespace lve {
 		auto triangle = LveGameObject::createGameObject();
 		triangle.model = lveModel;
 		triangle.color = { 0.1f, 0.8f, 0.1f };
-		triangle.transform2d.translation.x = 0.2f;
-		triangle.transform2d.scale = { 2.0f, 0.5f };
-		triangle.transform2d.rotation = 0.25f * glm::two_pi<float>();
+		triangle.transform.translation.x = 0.2f;
+		triangle.transform.scale = { 2.0f, 0.5f, 1.0f };
+		triangle.transform.rotation.y = 0.25f * glm::two_pi<float>();
 
 		gameObjects.push_back(std::move(triangle));
 	}

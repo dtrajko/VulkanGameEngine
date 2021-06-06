@@ -9,7 +9,7 @@
 
 int main()
 {
-	lve::GravityVecFieldApp app{};
+	lve::FirstApp app{};
 
 	try {
 		app.run();

@@ -31,7 +31,7 @@ namespace lve {
         }
 
         glm::vec2 computeForce(LveGameObject& fromObj, LveGameObject& toObj) const {
-            auto offset = fromObj.transform2d.translation - toObj.transform2d.translation;
+            auto offset = fromObj.transform.translation - toObj.transform.translation;
             float distanceSquared = glm::dot(offset, offset);
 
             // clown town - just going to return 0 if objects are too close together...
@@ -61,19 +61,19 @@ namespace lve {
 
             // update each objects position based on its final velocity
             for (auto& obj : physicsObjs) {
-                obj.transform2d.translation += dt * obj.rigidBody2d.velocity;
+                obj.transform.translation += dt * glm::vec3(obj.rigidBody2d.velocity, 0.0f);
             }
         }
     };
 
-    std::unique_ptr<LveModel> createSquareModel(LveDevice& device, glm::vec2 offset) {
+    std::unique_ptr<LveModel> createSquareModel(LveDevice& device, glm::vec3 offset) {
         std::vector<LveModel::Vertex> vertices = {
-            {{-0.5f, -0.5f}},
-            {{0.5f, 0.5f}},
-            {{-0.5f, 0.5f}},
-            {{-0.5f, -0.5f}},
-            {{0.5f, -0.5f}},
-            {{0.5f, 0.5f}},  //
+            {{-0.5f, -0.5f, 0.0f }},
+            {{ 0.5f,  0.5f, 0.0f }},
+            {{-0.5f,  0.5f, 0.0f }},
+            {{-0.5f, -0.5f, 0.0f }},
+            {{ 0.5f, -0.5f, 0.0f }},
+            {{ 0.5f,  0.5f, 0.0f }},  //
         };
         for (auto& v : vertices) {
             v.position += offset;
@@ -85,7 +85,7 @@ namespace lve {
         std::vector<LveModel::Vertex> uniqueVertices{};
         for (unsigned int i = 0; i < numSides; i++) {
             float angle = i * glm::two_pi<float>() / numSides;
-            uniqueVertices.push_back({ {glm::cos(angle), glm::sin(angle)} });
+            uniqueVertices.push_back({ {glm::cos(angle), glm::sin(angle), 0.0f } });
         }
         uniqueVertices.push_back({});  // adds center vertex at 0, 0
 
