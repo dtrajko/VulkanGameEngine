@@ -28,6 +28,9 @@ namespace lve {
 
 	void GravityVecFieldApp::run() {
 
+		LveCamera camera{};
+		camera.setOrthographicProjection(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f);
+
 		// create some models
 		std::shared_ptr<LveModel> squareModel = createSquareModel(
 			lveDevice,
@@ -85,8 +88,8 @@ namespace lve {
 
 				// render system
 				lveRenderer.beginSwapChainRenderPass(commandBuffer);
-				simpleRenderSystem.renderGameObjects(commandBuffer, physicsObjects);
-				simpleRenderSystem.renderGameObjects(commandBuffer, vectorField);
+				simpleRenderSystem.renderGameObjects(commandBuffer, physicsObjects, camera);
+				simpleRenderSystem.renderGameObjects(commandBuffer, vectorField, camera);
 				lveRenderer.endSwapChainRenderPass(commandBuffer);
 				lveRenderer.endFrame();
 			}
