@@ -98,7 +98,7 @@
     <ClInclude Include="gravity_vec_field_app.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="lve_camera.h">
+    <ClInclude Include="lve_camera.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

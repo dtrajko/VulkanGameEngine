@@ -101,7 +101,7 @@
     <ClInclude Include="first_app.hpp" />
     <ClInclude Include="gravity_physics_system.hpp" />
     <ClInclude Include="gravity_vec_field_app.hpp" />
-    <ClInclude Include="lve_camera.h" />
+    <ClInclude Include="lve_camera.hpp" />
     <ClInclude Include="lve_game_object.hpp" />
     <ClInclude Include="lve_model.hpp" />
     <ClInclude Include="lve_pipeline.hpp" />

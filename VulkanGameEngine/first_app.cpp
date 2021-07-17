@@ -1,6 +1,6 @@
 #include "first_app.hpp"
 
-#include "lve_camera.h"
+#include "lve_camera.hpp"
 #include "simple_render_system.hpp"
 
 // libs
@@ -30,13 +30,16 @@ namespace lve {
 		SimpleRenderSystem simpleRenderSystem{ lveDevice, lveRenderer.getSwapChainRenderPass() };
         LveCamera camera{};
 
+        // camera.setViewDirection(glm::vec3(0.0f), glm::vec3(0.5f, 0.0f, 1.0f));
+        camera.setViewTarget(glm::vec3(-1.0f, -2.0f, 2.0f), glm::vec3(0.0f, 0.0f, 0.5f));
+
 		while (!lveWindow.shouldClose()) {
 
 			glfwPollEvents();
 
             float aspect = lveRenderer.getAspectRatio();
             // camera.setOrthographicProjection(-aspect, aspect, -1.0f, 1.0f, -1.0f, 1.0f);
-            camera.setPerspectiveProjection(glm::radians(50.0f), aspect, 0.1f, 10.0f);
+            camera.setPerspectiveProjection(glm::radians(50.0f), aspect, 0.1f, 100.0f);
 
 			if (auto commandBuffer = lveRenderer.beginFrame()) {
 
