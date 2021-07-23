@@ -100,13 +100,16 @@ namespace lve {
 
 	void GravityVecFieldApp::loadGameObjects()
 	{
-		std::vector<LveModel::Vertex> vertices{
+		LveModel::Builder modelBuilder{};
+
+		modelBuilder.vertices =
+		{
 			{{ 0.0f, -0.5f, 0.0f }, { 1.0f, 0.0f, 0.0f }},
 			{{ 0.5f,  0.5f, 0.0f }, { 0.0f, 1.0f, 0.0f }},
 			{{-0.5f,  0.5f, 0.0f }, { 0.0f, 0.0f, 1.0f }},
 		};
 
-		auto lveModel = std::make_shared<LveModel>(lveDevice, vertices);
+		auto lveModel = std::make_shared<LveModel>(lveDevice, modelBuilder);
 
 		auto triangle = LveGameObject::createGameObject();
 		triangle.model = lveModel;

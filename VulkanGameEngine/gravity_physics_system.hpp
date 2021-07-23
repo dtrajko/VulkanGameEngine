@@ -67,7 +67,11 @@ namespace lve {
     };
 
     std::unique_ptr<LveModel> createSquareModel(LveDevice& device, glm::vec3 offset) {
-        std::vector<LveModel::Vertex> vertices = {
+
+        LveModel::Builder modelBuilder{};
+
+        modelBuilder.vertices =
+        {
             {{-0.5f, -0.5f, 0.0f }},
             {{ 0.5f,  0.5f, 0.0f }},
             {{-0.5f,  0.5f, 0.0f }},
@@ -75,10 +79,10 @@ namespace lve {
             {{ 0.5f, -0.5f, 0.0f }},
             {{ 0.5f,  0.5f, 0.0f }},  //
         };
-        for (auto& v : vertices) {
+        for (auto& v : modelBuilder.vertices) {
             v.position += offset;
         }
-        return std::make_unique<LveModel>(device, vertices);
+        return std::make_unique<LveModel>(device, modelBuilder);
     }
 
     std::unique_ptr<LveModel> createCircleModel(LveDevice& device, unsigned int numSides) {
@@ -89,13 +93,14 @@ namespace lve {
         }
         uniqueVertices.push_back({});  // adds center vertex at 0, 0
 
-        std::vector<LveModel::Vertex> vertices{};
+        LveModel::Builder modelBuilder{};
+
         for (unsigned int i = 0; i < numSides; i++) {
-            vertices.push_back(uniqueVertices[i]);
-            vertices.push_back(uniqueVertices[(i + 1) % numSides]);
-            vertices.push_back(uniqueVertices[numSides]);
+            modelBuilder.vertices.push_back(uniqueVertices[i]);
+            modelBuilder.vertices.push_back(uniqueVertices[(i + 1) % numSides]);
+            modelBuilder.vertices.push_back(uniqueVertices[numSides]);
         }
-        return std::make_unique<LveModel>(device, vertices);
+        return std::make_unique<LveModel>(device, modelBuilder);
     }
 
 }  // namespace lve
