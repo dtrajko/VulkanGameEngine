@@ -2,6 +2,7 @@
 
 #include "keyboard_movement_controller.hpp"
 #include "lve_camera.hpp"
+#include "lve_buffer.hpp"
 #include "simple_render_system.hpp"
 
 // libs
@@ -20,11 +21,26 @@ const float MAX_FRAME_TIME = 0.33f;
 
 namespace lve {
 
+	struct GlobalUbo {
+		glm::mat4 projectionView{1.0f};
+		glm::vec3 lightDirection = glm::normalize(glm::vec3{1.0f, -3.0f, -1.0f});
+	};
+
 	FirstApp::FirstApp() { loadGameObjects(); }
 
 	FirstApp::~FirstApp() {}
 
 	void FirstApp::run() {
+
+		LveBuffer globalUboBuffer{
+			lveDevice,
+			sizeof(GlobalUbo),
+			LveSwapChain::MAX_FRAMES_IN_FLIGHT,
+			VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT,
+			VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT,
+			lveDevice.properties.limits.minUniformBufferOffsetAlignment,
+		};
+		globalUboBuffer.map();
 
 		SimpleRenderSystem simpleRenderSystem{ lveDevice, lveRenderer.getSwapChainRenderPass() };
         LveCamera camera{};
@@ -52,14 +68,30 @@ namespace lve {
             float aspect = lveRenderer.getAspectRatio();
             camera.setPerspectiveProjection(glm::radians(50.0f), aspect, 0.1f, 100.0f);
 
-			if (auto commandBuffer = lveRenderer.beginFrame()) {
+			if (auto commandBuffer = lveRenderer.beginFrame())
+			{
+				int frameIndex = lveRenderer.getFrameIndex();
+
+				FrameInfo frameInfo{
+					frameIndex,
+					frameTime,
+					commandBuffer,
+					camera
+				};
 
 				// begin offscreen shadow pass
 				// render shadow casting objects
 				// end offscreen shadow pass
 
+				// update
+				GlobalUbo ubo{};
+				ubo.projectionView = camera.getProjection() * camera.getView();
+				globalUboBuffer.writeToIndex(&ubo, frameIndex);
+				globalUboBuffer.flushIndex(frameIndex);
+
+				// render
 				lveRenderer.beginSwapChainRenderPass(commandBuffer);
-				simpleRenderSystem.renderGameObjects(commandBuffer, gameObjects, camera);
+				simpleRenderSystem.renderGameObjects(frameInfo, gameObjects);
 				lveRenderer.endSwapChainRenderPass(commandBuffer);
 				lveRenderer.endFrame();
 			}

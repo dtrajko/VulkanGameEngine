@@ -82,14 +82,25 @@ namespace lve {
 			glfwPollEvents();
 
 			if (auto commandBuffer = lveRenderer.beginFrame()) {
+
+				int frameIndex = lveRenderer.getFrameIndex();
+				float frameTime = 0.0f; // not used in this implementation
+
+				FrameInfo frameInfo{
+					frameIndex,
+					frameTime,
+					commandBuffer,
+					camera
+				};
+
 				// update systems
 				gravitySystem.update(physicsObjects, 1.f / 60, 5);
 				vecFieldSystem.update(gravitySystem, physicsObjects, vectorField);
 
 				// render system
 				lveRenderer.beginSwapChainRenderPass(commandBuffer);
-				simpleRenderSystem.renderGameObjects(commandBuffer, physicsObjects, camera);
-				simpleRenderSystem.renderGameObjects(commandBuffer, vectorField, camera);
+				simpleRenderSystem.renderGameObjects(frameInfo, physicsObjects);
+				simpleRenderSystem.renderGameObjects(frameInfo, vectorField);
 				lveRenderer.endSwapChainRenderPass(commandBuffer);
 				lveRenderer.endFrame();
 			}
