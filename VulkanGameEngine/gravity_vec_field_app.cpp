@@ -76,7 +76,7 @@ namespace lve {
 		GravityPhysicsSystem gravitySystem{ 0.81f };
 		Vec2FieldSystem vecFieldSystem{};
 
-		SimpleRenderSystem simpleRenderSystem{ lveDevice, lveRenderer.getSwapChainRenderPass() };
+		SimpleRenderSystem simpleRenderSystem{ lveDevice, lveRenderer.getSwapChainRenderPass(), VkDescriptorSetLayout{} };
 
 		while (!lveWindow.shouldClose()) {
 			glfwPollEvents();

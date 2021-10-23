@@ -189,6 +189,7 @@ namespace lve
 		return *this;
 	}
 
+	// Allocates a descriptor set from a provided descriptor pool
 	bool LveDescriptorWriter::build(VkDescriptorSet& set) {
 		bool success = pool.allocateDescriptor(setLayout.getDescriptorSetLayout(), set);
 		if (!success) {
@@ -198,6 +199,7 @@ namespace lve
 		return true;
 	}
 
+	// Update descriptor sets
 	void LveDescriptorWriter::overwrite(VkDescriptorSet& set) {
 		for (auto& write : writes) {
 			write.dstSet = set;
