@@ -22,110 +22,78 @@
     <Filter Include="models">
       <UniqueIdentifier>{6c5c0fde-516c-4584-b508-faba65bc1906}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\rendering">
+      <UniqueIdentifier>{761afd38-871c-47c2-b42c-f623a296f673}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\rendering\systems">
+      <UniqueIdentifier>{49c312f7-d7a5-4cf0-b9bf-3bb60a3c5697}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\rendering">
+      <UniqueIdentifier>{566c9a70-2db1-443d-8935-08acfbfbe39d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\rendering\systems">
+      <UniqueIdentifier>{b10de109-b4d7-421a-b4cf-a154c42b8439}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lve_window.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="first_app.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lve_pipeline.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lve_device.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lve_swap_chain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lve_model.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lve_game_object.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lve_renderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="simple_render_system.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="gravity_vec_field_app.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lve_camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="keyboard_movement_controller.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lve_buffer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lve_descriptors.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="lve_window.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="rendering\systems\gravity_physics_system.hpp">
+      <Filter>Header Files\rendering\systems</Filter>
+    </ClInclude>
+    <ClInclude Include="rendering\systems\gravity_vec_field_app.hpp">
+      <Filter>Header Files\rendering\systems</Filter>
+    </ClInclude>
+    <ClInclude Include="rendering\systems\point_light_system.hpp">
+      <Filter>Header Files\rendering\systems</Filter>
+    </ClInclude>
+    <ClInclude Include="rendering\systems\rainbow_system.hpp">
+      <Filter>Header Files\rendering\systems</Filter>
+    </ClInclude>
+    <ClInclude Include="rendering\systems\simple_render_system.hpp">
+      <Filter>Header Files\rendering\systems</Filter>
+    </ClInclude>
+    <ClInclude Include="rendering\systems\vec2_field_system.hpp">
+      <Filter>Header Files\rendering\systems</Filter>
+    </ClInclude>
+    <ClInclude Include="rendering\lve_buffer.hpp">
+      <Filter>Header Files\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="rendering\lve_camera.hpp">
+      <Filter>Header Files\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="rendering\lve_descriptors.hpp">
+      <Filter>Header Files\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="rendering\lve_device.hpp">
+      <Filter>Header Files\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="rendering\lve_frame_info.hpp">
+      <Filter>Header Files\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="rendering\lve_game_object.hpp">
+      <Filter>Header Files\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="rendering\lve_model.hpp">
+      <Filter>Header Files\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="rendering\lve_pipeline.hpp">
+      <Filter>Header Files\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="rendering\lve_renderer.hpp">
+      <Filter>Header Files\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="rendering\lve_swap_chain.hpp">
+      <Filter>Header Files\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="rendering\lve_window.hpp">
+      <Filter>Header Files\rendering</Filter>
     </ClInclude>
     <ClInclude Include="first_app.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lve_pipeline.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lve_device.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lve_swap_chain.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lve_model.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lve_game_object.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lve_renderer.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_render_system.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="rainbow_system.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="gravity_physics_system.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="vec2_field_system.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="gravity_vec_field_app.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lve_camera.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="keyboard_movement_controller.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="lve_utils.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lve_buffer.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lve_frame_info.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lve_descriptors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -159,5 +127,55 @@
     <Object Include="models\smooth_vase.obj">
       <Filter>models</Filter>
     </Object>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="first_app.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="keyboard_movement_controller.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rendering\systems\gravity_vec_field_app.cpp">
+      <Filter>Source Files\rendering\systems</Filter>
+    </ClCompile>
+    <ClCompile Include="rendering\systems\point_light_system.cpp">
+      <Filter>Source Files\rendering\systems</Filter>
+    </ClCompile>
+    <ClCompile Include="rendering\systems\simple_render_system.cpp">
+      <Filter>Source Files\rendering\systems</Filter>
+    </ClCompile>
+    <ClCompile Include="rendering\lve_buffer.cpp">
+      <Filter>Source Files\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="rendering\lve_camera.cpp">
+      <Filter>Source Files\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="rendering\lve_descriptors.cpp">
+      <Filter>Source Files\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="rendering\lve_device.cpp">
+      <Filter>Source Files\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="rendering\lve_game_object.cpp">
+      <Filter>Source Files\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="rendering\lve_model.cpp">
+      <Filter>Source Files\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="rendering\lve_pipeline.cpp">
+      <Filter>Source Files\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="rendering\lve_renderer.cpp">
+      <Filter>Source Files\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="rendering\lve_swap_chain.cpp">
+      <Filter>Source Files\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="rendering\lve_window.cpp">
+      <Filter>Source Files\rendering</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

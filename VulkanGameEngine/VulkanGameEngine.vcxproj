@@ -86,42 +86,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="first_app.cpp" />
-    <ClCompile Include="gravity_vec_field_app.cpp" />
-    <ClCompile Include="keyboard_movement_controller.cpp" />
-    <ClCompile Include="lve_buffer.cpp" />
-    <ClCompile Include="lve_camera.cpp" />
-    <ClCompile Include="lve_descriptors.cpp" />
-    <ClCompile Include="lve_game_object.cpp" />
-    <ClCompile Include="lve_model.cpp" />
-    <ClCompile Include="lve_pipeline.cpp" />
-    <ClCompile Include="lve_renderer.cpp" />
-    <ClCompile Include="lve_swap_chain.cpp" />
-    <ClCompile Include="lve_window.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="lve_device.cpp" />
-    <ClCompile Include="simple_render_system.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="first_app.hpp" />
-    <ClInclude Include="gravity_physics_system.hpp" />
-    <ClInclude Include="gravity_vec_field_app.hpp" />
     <ClInclude Include="keyboard_movement_controller.hpp" />
-    <ClInclude Include="lve_buffer.hpp" />
-    <ClInclude Include="lve_camera.hpp" />
-    <ClInclude Include="lve_descriptors.h" />
-    <ClInclude Include="lve_frame_info.hpp" />
-    <ClInclude Include="lve_game_object.hpp" />
-    <ClInclude Include="lve_model.hpp" />
-    <ClInclude Include="lve_pipeline.hpp" />
-    <ClInclude Include="lve_renderer.hpp" />
-    <ClInclude Include="lve_swap_chain.hpp" />
     <ClInclude Include="lve_utils.hpp" />
-    <ClInclude Include="lve_window.hpp" />
-    <ClInclude Include="lve_device.hpp" />
-    <ClInclude Include="rainbow_system.hpp" />
-    <ClInclude Include="simple_render_system.hpp" />
-    <ClInclude Include="vec2_field_system.hpp" />
+    <ClInclude Include="rendering\lve_buffer.hpp" />
+    <ClInclude Include="rendering\lve_camera.hpp" />
+    <ClInclude Include="rendering\lve_descriptors.hpp" />
+    <ClInclude Include="rendering\lve_device.hpp" />
+    <ClInclude Include="rendering\lve_frame_info.hpp" />
+    <ClInclude Include="rendering\lve_game_object.hpp" />
+    <ClInclude Include="rendering\lve_model.hpp" />
+    <ClInclude Include="rendering\lve_pipeline.hpp" />
+    <ClInclude Include="rendering\lve_renderer.hpp" />
+    <ClInclude Include="rendering\lve_swap_chain.hpp" />
+    <ClInclude Include="rendering\lve_window.hpp" />
+    <ClInclude Include="rendering\systems\gravity_physics_system.hpp" />
+    <ClInclude Include="rendering\systems\gravity_vec_field_app.hpp" />
+    <ClInclude Include="rendering\systems\point_light_system.hpp" />
+    <ClInclude Include="rendering\systems\rainbow_system.hpp" />
+    <ClInclude Include="rendering\systems\simple_render_system.hpp" />
+    <ClInclude Include="rendering\systems\vec2_field_system.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="scripts\compile.bat">
@@ -157,6 +141,26 @@
     <Object Include="models\smooth_vase.obj">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </Object>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="first_app.cpp" />
+    <ClCompile Include="keyboard_movement_controller.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="rendering\lve_buffer.cpp" />
+    <ClCompile Include="rendering\lve_camera.cpp" />
+    <ClCompile Include="rendering\lve_descriptors.cpp" />
+    <ClCompile Include="rendering\lve_device.cpp" />
+    <ClCompile Include="rendering\lve_game_object.cpp" />
+    <ClCompile Include="rendering\lve_model.cpp" />
+    <ClCompile Include="rendering\lve_pipeline.cpp" />
+    <ClCompile Include="rendering\lve_renderer.cpp" />
+    <ClCompile Include="rendering\lve_swap_chain.cpp" />
+    <ClCompile Include="rendering\lve_window.cpp" />
+    <ClCompile Include="rendering\systems\gravity_vec_field_app.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="rendering\systems\point_light_system.cpp" />
+    <ClCompile Include="rendering\systems\simple_render_system.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
