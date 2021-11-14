@@ -22,8 +22,10 @@ const float MAX_FRAME_TIME = 0.33f;
 namespace lve {
 
 	struct GlobalUbo {
-		alignas(16) glm::mat4 projectionView{1.0f};
-		alignas(16) glm::vec3 lightDirection = glm::normalize(glm::vec3{-1.0f, -3.0f, -1.0f});
+		glm::mat4 projectionView{1.0f};
+		glm::vec4 ambientLightColor{1.0f, 1.0f, 1.0f, 0.02f}; // w is intensity
+		glm::vec3 lightPosition{-1.0f};
+		alignas(16) glm::vec4 lightColor{1.0f}; // w is light intensity
 	};
 
 	FirstApp::FirstApp()
@@ -71,6 +73,7 @@ namespace lve {
         camera.setViewTarget(glm::vec3(-1.0f, -2.0f, 2.0f), glm::vec3(0.0f, 0.0f, 0.5f));
 
         auto viewerObject = LveGameObject::createGameObject();
+		viewerObject.transform.translation.z = -2.5f;
         KeyboardMovementController cameraController{};
 
         auto currentTime = std::chrono::high_resolution_clock::now();
@@ -131,16 +134,24 @@ namespace lve {
 		lveModel = LveModel::createModelFromFile(lveDevice, "models/flat_vase.obj");
 		auto flatVase = LveGameObject::createGameObject();
 		flatVase.model = lveModel;
-		flatVase.transform.translation = { -0.5f, 0.6f, 0.6f };
+		flatVase.transform.translation = { -0.5f, 0.6f, 0.0f };
 		flatVase.transform.scale = glm::vec3(3.0f);
         gameObjects.push_back(std::move(flatVase));
 
 		lveModel = LveModel::createModelFromFile(lveDevice, "models/smooth_vase.obj");
 		auto smoothVase = LveGameObject::createGameObject();
 		smoothVase.model = lveModel;
-		smoothVase.transform.translation = { 0.5f, 0.6f, 0.6f };
+		smoothVase.transform.translation = { 0.5f, 0.6f, 0.0f };
 		smoothVase.transform.scale = glm::vec3(3.0f);
 		gameObjects.push_back(std::move(smoothVase));
+
+		lveModel = LveModel::createModelFromFile(lveDevice, "models/quad.obj");
+		auto floor = LveGameObject::createGameObject();
+		floor.model = lveModel;
+		floor.transform.translation = { 0.0f, 0.7f, 0.0f };
+		floor.transform.scale = glm::vec3(4.0f);
+		gameObjects.push_back(std::move(floor));
+
 	}
 
 } // namespace lve
