@@ -32,27 +32,49 @@
       <UniqueIdentifier>{566c9a70-2db1-443d-8935-08acfbfbe39d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\rendering\systems">
-      <UniqueIdentifier>{b10de109-b4d7-421a-b4cf-a154c42b8439}</UniqueIdentifier>
+      <UniqueIdentifier>{6fc424c7-eb52-4c65-9e22-f2c59e3e6343}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="rendering\systems\gravity_physics_system.hpp">
-      <Filter>Header Files\rendering\systems</Filter>
+    <None Include="shaders\simple_shader.frag">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\simple_shader.vert">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="scripts\compile.bat">
+      <Filter>scripts</Filter>
+    </None>
+    <None Include="scripts\compile.sh">
+      <Filter>scripts</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="models\colored_cube.obj">
+      <Filter>models</Filter>
+    </Object>
+    <Object Include="models\cube.obj">
+      <Filter>models</Filter>
+    </Object>
+    <Object Include="models\flat_vase.obj">
+      <Filter>models</Filter>
+    </Object>
+    <Object Include="models\quad.obj">
+      <Filter>models</Filter>
+    </Object>
+    <Object Include="models\smooth_vase.obj">
+      <Filter>models</Filter>
+    </Object>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="first_app.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="rendering\systems\gravity_vec_field_app.hpp">
-      <Filter>Header Files\rendering\systems</Filter>
+    <ClInclude Include="keyboard_movement_controller.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="rendering\systems\point_light_system.hpp">
-      <Filter>Header Files\rendering\systems</Filter>
-    </ClInclude>
-    <ClInclude Include="rendering\systems\rainbow_system.hpp">
-      <Filter>Header Files\rendering\systems</Filter>
-    </ClInclude>
-    <ClInclude Include="rendering\systems\simple_render_system.hpp">
-      <Filter>Header Files\rendering\systems</Filter>
-    </ClInclude>
-    <ClInclude Include="rendering\systems\vec2_field_system.hpp">
-      <Filter>Header Files\rendering\systems</Filter>
+    <ClInclude Include="lve_utils.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="rendering\lve_buffer.hpp">
       <Filter>Header Files\rendering</Filter>
@@ -87,46 +109,12 @@
     <ClInclude Include="rendering\lve_window.hpp">
       <Filter>Header Files\rendering</Filter>
     </ClInclude>
-    <ClInclude Include="first_app.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="rendering\systems\point_light_system.hpp">
+      <Filter>Header Files\rendering\systems</Filter>
     </ClInclude>
-    <ClInclude Include="keyboard_movement_controller.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="rendering\systems\simple_render_system.hpp">
+      <Filter>Header Files\rendering\systems</Filter>
     </ClInclude>
-    <ClInclude Include="lve_utils.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="shaders\simple_shader.frag">
-      <Filter>shaders</Filter>
-    </None>
-    <None Include="shaders\simple_shader.vert">
-      <Filter>shaders</Filter>
-    </None>
-    <None Include="scripts\compile.bat">
-      <Filter>scripts</Filter>
-    </None>
-    <None Include="scripts\compile.sh">
-      <Filter>scripts</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Object Include="models\colored_cube.obj">
-      <Filter>models</Filter>
-    </Object>
-    <Object Include="models\cube.obj">
-      <Filter>models</Filter>
-    </Object>
-    <Object Include="models\flat_vase.obj">
-      <Filter>models</Filter>
-    </Object>
-    <Object Include="models\quad.obj">
-      <Filter>models</Filter>
-    </Object>
-    <Object Include="models\smooth_vase.obj">
-      <Filter>models</Filter>
-    </Object>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="first_app.cpp">
@@ -137,15 +125,6 @@
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="rendering\systems\gravity_vec_field_app.cpp">
-      <Filter>Source Files\rendering\systems</Filter>
-    </ClCompile>
-    <ClCompile Include="rendering\systems\point_light_system.cpp">
-      <Filter>Source Files\rendering\systems</Filter>
-    </ClCompile>
-    <ClCompile Include="rendering\systems\simple_render_system.cpp">
-      <Filter>Source Files\rendering\systems</Filter>
     </ClCompile>
     <ClCompile Include="rendering\lve_buffer.cpp">
       <Filter>Source Files\rendering</Filter>
@@ -176,6 +155,12 @@
     </ClCompile>
     <ClCompile Include="rendering\lve_window.cpp">
       <Filter>Source Files\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="rendering\systems\simple_render_system.cpp">
+      <Filter>Source Files\rendering\systems</Filter>
+    </ClCompile>
+    <ClCompile Include="rendering\systems\point_light_system.cpp">
+      <Filter>Source Files\rendering\systems</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

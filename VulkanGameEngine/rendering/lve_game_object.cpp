@@ -1,4 +1,4 @@
-#include "lve_game_object.hpp"
+#include "rendering/lve_game_object.hpp"
 
 namespace lve {
 

@@ -55,7 +55,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)vendor\VulkanSDK\1.2.170.0\Include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\glfw\include;$(SolutionDir)vendor\tinyobjloader;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)vendor\VulkanSDK\1.2.170.0\Include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\glfw\include;$(SolutionDir)vendor\tinyobjloader;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -73,7 +73,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)vendor\VulkanSDK\1.2.170.0\Include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)vendor\VulkanSDK\1.2.170.0\Include;$(SolutionDir)vendor\glm;$(SolutionDir)vendor\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -85,28 +85,6 @@
       <AdditionalDependencies>vulkan-1.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="first_app.hpp" />
-    <ClInclude Include="keyboard_movement_controller.hpp" />
-    <ClInclude Include="lve_utils.hpp" />
-    <ClInclude Include="rendering\lve_buffer.hpp" />
-    <ClInclude Include="rendering\lve_camera.hpp" />
-    <ClInclude Include="rendering\lve_descriptors.hpp" />
-    <ClInclude Include="rendering\lve_device.hpp" />
-    <ClInclude Include="rendering\lve_frame_info.hpp" />
-    <ClInclude Include="rendering\lve_game_object.hpp" />
-    <ClInclude Include="rendering\lve_model.hpp" />
-    <ClInclude Include="rendering\lve_pipeline.hpp" />
-    <ClInclude Include="rendering\lve_renderer.hpp" />
-    <ClInclude Include="rendering\lve_swap_chain.hpp" />
-    <ClInclude Include="rendering\lve_window.hpp" />
-    <ClInclude Include="rendering\systems\gravity_physics_system.hpp" />
-    <ClInclude Include="rendering\systems\gravity_vec_field_app.hpp" />
-    <ClInclude Include="rendering\systems\point_light_system.hpp" />
-    <ClInclude Include="rendering\systems\rainbow_system.hpp" />
-    <ClInclude Include="rendering\systems\simple_render_system.hpp" />
-    <ClInclude Include="rendering\systems\vec2_field_system.hpp" />
-  </ItemGroup>
   <ItemGroup>
     <None Include="scripts\compile.bat">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -143,6 +121,24 @@
     </Object>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="first_app.hpp" />
+    <ClInclude Include="keyboard_movement_controller.hpp" />
+    <ClInclude Include="lve_utils.hpp" />
+    <ClInclude Include="rendering\lve_buffer.hpp" />
+    <ClInclude Include="rendering\lve_camera.hpp" />
+    <ClInclude Include="rendering\lve_descriptors.hpp" />
+    <ClInclude Include="rendering\lve_device.hpp" />
+    <ClInclude Include="rendering\lve_frame_info.hpp" />
+    <ClInclude Include="rendering\lve_game_object.hpp" />
+    <ClInclude Include="rendering\lve_model.hpp" />
+    <ClInclude Include="rendering\lve_pipeline.hpp" />
+    <ClInclude Include="rendering\lve_renderer.hpp" />
+    <ClInclude Include="rendering\lve_swap_chain.hpp" />
+    <ClInclude Include="rendering\lve_window.hpp" />
+    <ClInclude Include="rendering\systems\point_light_system.hpp" />
+    <ClInclude Include="rendering\systems\simple_render_system.hpp" />
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="first_app.cpp" />
     <ClCompile Include="keyboard_movement_controller.cpp" />
     <ClCompile Include="main.cpp" />
@@ -156,9 +152,6 @@
     <ClCompile Include="rendering\lve_renderer.cpp" />
     <ClCompile Include="rendering\lve_swap_chain.cpp" />
     <ClCompile Include="rendering\lve_window.cpp" />
-    <ClCompile Include="rendering\systems\gravity_vec_field_app.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="rendering\systems\point_light_system.cpp" />
     <ClCompile Include="rendering\systems\simple_render_system.cpp" />
   </ItemGroup>

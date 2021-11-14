@@ -1,6 +1,6 @@
-#include "lve_pipeline.hpp"
+#include "rendering/lve_pipeline.hpp"
 
-#include "lve_model.hpp"
+#include "rendering/lve_model.hpp"
 
 // std
 #include <cassert>
