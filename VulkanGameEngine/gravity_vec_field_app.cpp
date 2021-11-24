@@ -3,6 +3,7 @@
 #include "simple_render_system.hpp"
 #include "gravity_physics_system.hpp"
 #include "vec2_field_system.hpp"
+#include "lve_game_object.hpp"
 
 // libs
 #define GLM_FORCE_RADIANS
@@ -30,6 +31,8 @@ namespace lve {
 
 		LveCamera camera{};
 		camera.setOrthographicProjection(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f);
+
+		std::vector<VkDescriptorSet> globalDescriptorSets(LveSwapChain::MAX_FRAMES_IN_FLIGHT);
 
 		// create some models
 		std::shared_ptr<LveModel> squareModel = createSquareModel(
@@ -90,7 +93,9 @@ namespace lve {
 					frameIndex,
 					frameTime,
 					commandBuffer,
-					camera
+					camera,
+					globalDescriptorSets[frameIndex],
+					gameObjects
 				};
 
 				// update systems
@@ -99,8 +104,8 @@ namespace lve {
 
 				// render system
 				lveRenderer.beginSwapChainRenderPass(commandBuffer);
-				simpleRenderSystem.renderGameObjects(frameInfo, physicsObjects);
-				simpleRenderSystem.renderGameObjects(frameInfo, vectorField);
+				simpleRenderSystem.renderGameObjects(frameInfo);
+				simpleRenderSystem.renderGameObjects(frameInfo);
 				lveRenderer.endSwapChainRenderPass(commandBuffer);
 				lveRenderer.endFrame();
 			}
@@ -129,7 +134,7 @@ namespace lve {
 		triangle.transform.scale = { 2.0f, 0.5f, 1.0f };
 		triangle.transform.rotation.y = 0.25f * glm::two_pi<float>();
 
-		gameObjects.push_back(std::move(triangle));
+		gameObjects.emplace(triangle.getId(), std::move(triangle));
 	}
 
 } // namespace lve
