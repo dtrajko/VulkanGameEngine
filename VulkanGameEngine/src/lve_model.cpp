@@ -15,6 +15,10 @@
 #include <iostream>
 #include <unordered_map>
 
+#ifndef ENGINE_DIR
+#define ENGINE_DIR "../"
+#endif
+
 
 namespace std
 {
@@ -164,12 +168,14 @@ namespace lve {
 
 	void LveModel::Builder::loadModel(const std::string& filepath)
 	{
+		std::string enginePath = ENGINE_DIR + filepath;
+
 		tinyobj::attrib_t attrib;
 		std::vector<tinyobj::shape_t> shapes;
 		std::vector<tinyobj::material_t> materials;
 		std::string warn, err;
 
-		if (!tinyobj::LoadObj(&attrib, &shapes, &materials, &warn, &err, filepath.c_str()))
+		if (!tinyobj::LoadObj(&attrib, &shapes, &materials, &warn, &err, enginePath.c_str()))
 		{
 			throw std::runtime_error(warn + err);
 		}

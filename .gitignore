@@ -354,4 +354,4 @@ MigrationBackup/
 /vendor/VulkanSDK/1.2.170.0/Lib/MachineIndependent.lib
 /vendor/VulkanSDK/1.2.170.0/Lib/SPIRV-Tools.lib
 /vendor/VulkanSDK/1.2.170.0/Lib/SPIRV-Tools-reduce.lib
-VulkanGameEngine/build
+/VulkanGameEngine/build
