@@ -129,7 +129,7 @@ find_program(GLSL_VALIDATOR glslangValidator HINTS
 )
 
 # get all .vert and .frag files in shaders directory
-file(GLOB_RECURSE GLSL_SOURCE_FILES
+file(GLOB_RECURSE GLSL_SOURCE_FILES CONFIGURE_DEPENDS
   "${PROJECT_SOURCE_DIR}/shaders/*.frag"
   "${PROJECT_SOURCE_DIR}/shaders/*.vert"
 )

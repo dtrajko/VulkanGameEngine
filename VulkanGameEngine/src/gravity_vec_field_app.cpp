@@ -1,8 +1,8 @@
 #include "gravity_vec_field_app.hpp"
 
-#include "simple_render_system.hpp"
-#include "gravity_physics_system.hpp"
-#include "vec2_field_system.hpp"
+#include "systems/simple_render_system.hpp"
+#include "systems/gravity_physics_system.hpp"
+#include "systems/vec2_field_system.hpp"
 #include "lve_game_object.hpp"
 
 // libs
