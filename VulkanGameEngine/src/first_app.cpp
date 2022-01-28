@@ -23,14 +23,6 @@ const float MAX_FRAME_TIME = 0.33f;
 
 namespace lve {
 
-	struct GlobalUbo {
-		glm::mat4 projection{1.0f};
-		glm::mat4 view{ 1.0f };
-		glm::vec4 ambientLightColor{1.0f, 1.0f, 1.0f, 0.02f}; // w is intensity
-		glm::vec3 lightPosition{-1.0f};
-		alignas(16) glm::vec4 lightColor{1.0f}; // w is light intensity
-	};
-
 	FirstApp::FirstApp()
 	{
 		globalPool = LveDescriptorPool::Builder(lveDevice)
@@ -121,12 +113,13 @@ namespace lve {
 				GlobalUbo ubo{};
 				ubo.projection = camera.getProjection();
 				ubo.view = camera.getView();
+				pointLightSystem.update(frameInfo, ubo);
 				uboBuffers[frameIndex]->writeToBuffer(&ubo);
 				uboBuffers[frameIndex]->flush();
 
 				// render
 				lveRenderer.beginSwapChainRenderPass(commandBuffer);
-				simpleRenderSystem.renderGameObjects(frameInfo);
+ 				simpleRenderSystem.renderGameObjects(frameInfo);
 				pointLightSystem.render(frameInfo);
 				lveRenderer.endSwapChainRenderPass(commandBuffer);
 				lveRenderer.endFrame();
@@ -160,6 +153,13 @@ namespace lve {
 		floor.transform.translation = { 0.0f, 0.7f, 0.0f };
 		floor.transform.scale = glm::vec3(4.0f);
 		gameObjects.emplace(floor.getId(), std::move(floor));
+
+		{
+			auto pointLight = LveGameObject::makePointLight(0.2f);
+			gameObjects.emplace(pointLight.getId(), std::move(pointLight));
+		}
+
+		// using pointLight again invalid...
 	}
 
 } // namespace lve

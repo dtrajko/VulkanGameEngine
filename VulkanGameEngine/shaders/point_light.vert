@@ -11,15 +11,28 @@ const vec2 OFFSETS[6] = vec2[](
 
 layout (location = 0) out vec2 fragOffset;
 
-layout(set = 0, binding = 0) uniform GlobalUbo {
+struct PointLight
+{
+	vec4 position; // ignore w
+	vec4 color;    // w is intensity
+};
+
+const uint MAX_LIGHTS = 10;
+
+layout(set = 0, binding = 0) uniform GlobalUbo
+{
 	mat4 projection;
 	mat4 view;
 	vec4 ambientLightColor; // w is intensity
-	vec3 lightPosition;
-	vec4 lightColor; // w is intensity
+	PointLight pointLights[MAX_LIGHTS];
+	int numLights;
 } ubo;
 
-const float LIGHT_RADIUS = 0.1;
+layout (push_constant) uniform Push {
+	vec4 position;
+	vec4 color;
+	float radius;
+} push;
 
 
 void main() {
@@ -27,15 +40,9 @@ void main() {
 	vec3 cameraRightWorld = {ubo.view[0][0], ubo.view[1][0], ubo.view[2][0]};
 	vec3 cameraUpWorld = {ubo.view[0][1], ubo.view[1][1], ubo.view[2][1]};
 
-	vec3 positionWorld = ubo.lightPosition.xyz
-		+ LIGHT_RADIUS * fragOffset.x * cameraRightWorld
-		+ LIGHT_RADIUS * fragOffset.y * cameraUpWorld;
+	vec3 positionWorld = push.position.xyz
+		+ push.radius * fragOffset.x * cameraRightWorld
+		+ push.radius * fragOffset.y * cameraUpWorld;
 
 	gl_Position = ubo.projection * ubo.view * vec4(positionWorld, 1.0);
-
-	// alternative method is to first transform light position to camera space,
-	// then apply offset in camera space
-	// vec4 lightInCameraSpace = ubo.view * vec4(ubo.lightPosition, 1.0);
-	// vec4 positionInCameraSpace = lightInCameraSpace + LIGHT_RADIUS * vec4(fragOffset, 0.0, 0.0);
-	// gl_Position = ubo.projection * positionInCameraSpace;
 }

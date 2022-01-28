@@ -12,7 +12,8 @@
 
 namespace lve {
 
-	struct TransformComponent {
+	struct TransformComponent
+	{
 		glm::vec3 translation{}; // (position offset)
 		glm::vec3 scale{ 1.0f, 1.0f, 1.0f };
 		glm::vec3 rotation{};
@@ -24,9 +25,15 @@ namespace lve {
 		glm::mat3 normalMatrix();
 	};
 
-	struct RigidBody2dComponent {
+	struct RigidBody2dComponent
+	{
 		glm::vec2 velocity;
 		float mass{1.0f};
+	};
+
+	struct PointLightComponent
+	{
+		float lightIntensity = 1.0f;
 	};
 
 	class LveGameObject
@@ -40,6 +47,9 @@ namespace lve {
 			return LveGameObject{ currentId++ };
 		}
 
+		static LveGameObject makePointLight(
+		float intensity = 10.0f, float radius = 0.1f, glm::vec3 color = glm::vec3(1.0f));
+
 		LveGameObject(const LveGameObject&) = delete;
 		LveGameObject& operator=(const LveGameObject&) = delete;
 		LveGameObject(LveGameObject&&) = default;
@@ -47,10 +57,13 @@ namespace lve {
 
 		id_t getId() const { return id; }
 
-		std::shared_ptr<LveModel> model{};
 		glm::vec3 color{};
 		TransformComponent transform{};
 		RigidBody2dComponent rigidBody2d{};
+
+		// Optional pointer components
+		std::shared_ptr<LveModel> model{};
+		std::unique_ptr<PointLightComponent> pointLight = nullptr;
 
 	private:
 		LveGameObject(id_t objId) : id{ objId } {}
