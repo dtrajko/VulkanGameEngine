@@ -9,6 +9,7 @@
 // std
 #include <stdexcept>
 #include <array>
+#include <map>
 
 
 namespace lve {
@@ -58,6 +59,7 @@ namespace lve {
 
 		PipelineConfigInfo pipelineConfig{};
 		LvePipeline::defaultPipelineConfigInfo(pipelineConfig);
+		LvePipeline::enableAlphaBlending(pipelineConfig);
 
 		pipelineConfig.bindingDescriptions.clear();
 		pipelineConfig.attributeDescriptions.clear();
@@ -100,6 +102,19 @@ namespace lve {
 
 	void PointLightSystem::render(FrameInfo& frameInfo)
 	{
+		// sort lights
+		std::map<float, LveGameObject::id_t> sorted;
+		for (auto& kv : frameInfo.gameObjects)
+		{
+			auto& obj = kv.second;
+			if (obj.pointLight == nullptr) continue;
+
+			// calculate distance
+			auto offset = frameInfo.camera.getPosition() - obj.transform.translation;
+			float disSquared = glm::dot(offset, offset);
+			sorted[disSquared] = obj.getId();
+		}
+
 		lvePipeline->bind(frameInfo.commandBuffer);
 
 		vkCmdBindDescriptorSets(
@@ -112,11 +127,14 @@ namespace lve {
 			0,
 			nullptr);
 
-
-		for (auto& kv : frameInfo.gameObjects)
+		// iterate through sorted lights in reverse order
+		// for (auto& kv : frameInfo.gameObjects)
+		for (auto it = sorted.rbegin(); it != sorted.rend(); ++it)
 		{
-			auto& obj = kv.second;
-			if (obj.pointLight == nullptr) continue;
+			// use game obj id to find light object
+			// auto& obj = kv.second;
+			auto& obj = frameInfo.gameObjects.at(it->second);
+			// if (obj.pointLight == nullptr) continue;
 
 			PointLightPushConstants push{};
 			push.position = glm::vec4(obj.transform.translation, 1.0f);
